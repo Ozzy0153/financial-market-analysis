@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="admin-dashboard">
+    <h1>Admin Dashboard</h1>
+    <div>
+        <h2>All Users</h2>
+        <ul class="user-list">
+            <% users.forEach(user => { %>
+                <li>
+                    <%= user.username %> - <%= user.role %>
+                    <div class="user-actions">
+                        <form action="/edit-user" method="POST" class="user-form">
+                            <input type="hidden" name="userId" value="<%= user._id %>">
+                            <input type="text" name="username" value="<%= user.username %>" class="user-input">
+                            <select name="role" class="user-select">
+                                <option value="user" <% if(user.role === 'user') { %>selected<% } %>>User</option>
+                                <option value="admin" <% if(user.role === 'admin') { %>selected<% } %>>Admin</option>
+                            </select>
+                            <button type="submit" class="update-button">Update</button>
+                        </form>
+
+                        <form action="/delete-user" method="POST" class="user-form">
+                            <input type="hidden" name="userId" value="<%= user._id %>">
+                            <button type="submit" class="delete-button">Delete</button>
+                        </form>
+                    </div>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+    <div class="logout-section">
+        <form action="/logout" method="POST">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    </div>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>

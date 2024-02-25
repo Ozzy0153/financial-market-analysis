@@ -1,21 +1,26 @@
-// script.js
-
 // Function to fetch currency rates and update the DOM
-function fetchCurrencyRates() {
-    fetch('/api/currency-rates')
-        .then(response => response.json())
-        .then(data => {
-            displayCurrencyRates(data);
-        })
-        .catch(error => console.error('Error fetching currency rates:', error));
-}
+fetch('/api/currency-rates')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json(); // This parses the JSON
+    })
+    .then(data => {
+        console.log('Currency data received:', data); // Debugging line
+        displayCurrencyRates(data);
+        populateCurrencyOptions(data);
+    })
+    .catch(error => {
+        console.error('Error fetching currency rates:', error);
+    });
 
 function displayCurrencyRates(data) {
     const ratesElement = document.getElementById('currencyRates');
     if (ratesElement && data && data.rates) {
-        ratesElement.innerHTML = '';
+        ratesElement.innerHTML = ''; // Clear previous content
         Object.keys(data.rates).forEach(currency => {
-            ratesElement.innerHTML += `<p>${currency}: ${data.rates[currency]}</p>`;
+            ratesElement.innerHTML += `<div>${currency}: ${data.rates[currency]}</div>`;
         });
     } else {
         console.error('Invalid or missing data:', data);
@@ -23,10 +28,39 @@ function displayCurrencyRates(data) {
     }
 }
 
+function populateCurrencyOptions(data) {
+    const currencySelect = document.getElementById('currency');
+    if (currencySelect && data && data.rates) {
+        Object.keys(data.rates).forEach(currency => {
+            const option = document.createElement('option');
+            option.value = currency;
+            option.text = currency;
+            currencySelect.appendChild(option);
+        });
+    }
+}
 
-
-// Call the fetch function on page load
 document.addEventListener('DOMContentLoaded', () => {
-    fetchCurrencyRates();
-    // Add other functions you need to call on page load here
+    const form = document.getElementById('currencyConversionForm');
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting normally
+            const amount = document.getElementById('amount').value;
+            const currency = document.getElementById('currency').value;
+            fetch('/api/currency-rates')
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.rates && data.rates[currency]) {
+                        const result = amount * data.rates[currency];
+                        document.getElementById('conversionResult').innerText = `${amount} EUR is approximately ${result.toFixed(2)} ${currency}`;
+                    } else {
+                        document.getElementById('conversionResult').innerText = 'Conversion error';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error during conversion:', error);
+                    document.getElementById('conversionResult').innerText = 'Conversion error';
+                });
+        });
+    }
 });

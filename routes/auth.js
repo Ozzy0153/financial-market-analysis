@@ -1,6 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const isAdmin = require('../middleware/isAdmin');
 const User = require('../models/User');
 const router = express.Router();
 
@@ -23,31 +24,33 @@ router.post('/register', async (req, res) => {
     }
 });
 
-
 router.post('/login', async (req, res) => {
     try {
-        console.log('Login request body:', req.body);
         const { username, password } = req.body;
         const user = await User.findOne({ username });
-        console.log('User found:', user);
+
         if (!user) {
             return res.status(401).send('Invalid Credentials');
         }
+
         const isMatch = await bcrypt.compare(password, user.password);
-        console.log('Password match:', isMatch);
+
         if (!isMatch) {
             return res.status(401).send('Invalid Credentials');
         }
+
+        // Ensure the role is included in the token payload
         const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET);
-        console.log('Token:', token);
+
         res.cookie('token', token, { httpOnly: true, secure: true });
-        res.redirect('/dashboard');
+
+        // Redirect based on role
+        const redirectUrl = user.role === 'admin' ? '/admin' : '/dashboard';
+        res.redirect(redirectUrl);
+
     } catch (error) {
-        console.error('Login error:', error);
         res.status(500).send('Internal Server Error');
     }
 });
-
-
 
 module.exports = router;

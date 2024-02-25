@@ -1,0 +1,17 @@
+{
+  "title_dashboard": "Панель мониторинга",
+  "financial_market_analysis": "Анализ финансового рынка",
+  "dashboard": "Панель мониторинга",
+  "stocks": "Акции",
+  "amount": "Сумма",
+  "currency": "Валюта",
+  "convert": "Конвертировать",
+  "current_currency_rates": "Текущие курсы валют",
+  "language_english": "Английский",
+  "language_russian": "Русский",
+  "language_kazakh": "Казахский",
+  "stocks_title": "Акции",
+  "enter_stock_symbols": "Введите символы акций (например, AAPL, IBM, GOOG)",
+  "get_stock_data": "Получить Данные",
+  "popular_stocks": "Популярные акции"
+}

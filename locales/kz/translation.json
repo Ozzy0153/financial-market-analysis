@@ -1,0 +1,17 @@
+{
+  "title_dashboard": "Бақылау Тақтасы",
+  "financial_market_analysis": "Қаржы Нарығын Талдау",
+  "dashboard": "Бақылау Тақтасы",
+  "stocks": "Акциялар",
+  "amount": "Сома",
+  "currency": "Валюта",
+  "convert": "Түрлендіру",
+  "current_currency_rates": "Ағымдағы Валюта Бағамдары",
+  "language_english": "Ағылшын",
+  "language_russian": "Орыс",
+  "language_kazakh": "Қазақ тілі",
+  "stocks_title": "Акциялар",
+  "enter_stock_symbols": "Акция символдарын енгізіңіз (мыс., AAPL, IBM, GOOG)",
+  "get_stock_data": "Дерек алу",
+  "popular_stocks": "Танымал акциялар"
+}

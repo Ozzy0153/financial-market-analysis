@@ -1,0 +1,17 @@
+{
+  "title_dashboard": "Dashboard",
+  "financial_market_analysis": "Financial Market Analysis",
+  "dashboard": "Dashboard",
+  "stocks": "Stocks",
+  "amount": "Amount",
+  "currency": "Currency",
+  "convert": "Convert",
+  "current_currency_rates": "Current Currency Rates",
+  "language_english": "English",
+  "language_russian": "Russian",
+  "language_kazakh": "Kazakh",
+  "stocks_title": "Stocks",
+  "enter_stock_symbols": "Enter stock symbols (e.g., AAPL, IBM, GOOG)",
+  "get_stock_data": "Get Stock Data",
+  "popular_stocks": "Popular Stocks"
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="<%= i18n.language %>">
+<head>
+    <meta charset="UTF-8">
+    <title><%= t('stocks_title') %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="/stocks" class="navbar-brand"><%= t('financial_market_analysis') %></a>
+        <div class="navbar-links">
+            <a href="/dashboard"><%= t('dashboard') %></a>
+            <a href="/stocks"><%= t('stocks') %></a>
+        </div>
+        <select onchange="if(this.value !== '') { window.location = '/language/' + this.value; }">
+            <option value="" selected disabled hidden>Select Language</option>
+            <option value="en"><%= t('language_english') %></option>
+            <option value="ru"><%= t('language_russian') %></option>
+            <option value="kz"><%= t('language_kazakh') %></option>
+        </select>
+    </div>
+</nav>
+<div class="stock-form">
+    <form id="stockForm">
+        <input type="text" id="stockSymbol" name="symbol" placeholder="<%= t('enter_stock_symbols') %>">
+        <button type="submit"><%= t('get_stock_data') %></button>
+    </form>
+    <div class="quick-links">
+        <span><%= t('popular_stocks') %>:</span>
+        <button class="quick-link" data-symbol="AAPL">Apple</button>
+        <button class="quick-link" data-symbol="AMZN">Amazon</button>
+        <button class="quick-link" data-symbol="GOOGL">Google</button>
+        <button class="quick-link" data-symbol="FB">Facebook</button>
+    </div>
+</div>
+<div class="stock-info" id="stockInfo"></div>
+
+<script src="/js/stocks.js"></script>
+</body>
+</html>
