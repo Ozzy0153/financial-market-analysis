@@ -1,13 +1,12 @@
-// Function to fetch currency rates and update the DOM
 fetch('/api/currency-rates')
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        return response.json(); // This parses the JSON
+        return response.json();
     })
     .then(data => {
-        console.log('Currency data received:', data); // Debugging line
+        console.log('Currency data received:', data);
         displayCurrencyRates(data);
         populateCurrencyOptions(data);
     })

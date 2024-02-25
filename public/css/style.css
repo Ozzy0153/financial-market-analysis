@@ -30,12 +30,6 @@
     color: #ccc;
 }
 
-.navigation-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
 .auth-button {
     padding: 15px 30px;
     font-size: 1em;
@@ -184,11 +178,33 @@ h1, h2 {
     background-color: #121214;
     color: #fff;
     overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 255, 0, 0.4);
+}
+
+.navbar1 {
+    background-color: #121214;
+    color: #fff;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 255, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .navbar-container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-container1 {
+    max-width: 1200px;
+    margin: auto;
     padding: 0 20px;
     display: flex;
     justify-content: space-between;
@@ -201,6 +217,17 @@ h1, h2 {
     font-size: 1.5em;
 }
 
+.navbar-brand1 {
+    color: #4CAF50;
+    text-decoration: none;
+    font-size: 1.5em;
+}
+
+.navbar-brand1:hover {
+    color: #36b247;
+    text-decoration: none;
+}
+
 .navbar-links a {
     color: #fff;
     text-decoration: none;
@@ -211,6 +238,18 @@ h1, h2 {
 .navbar-links a:hover {
     color: #4CAF50;
 }
+
+.navbar-links1 a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 1em;
+}
+
+.navbar-links1 a:hover {
+    color: #4CAF50;
+}
+
 
 .stock-form {
     max-width: 500px;
@@ -309,35 +348,61 @@ h1, h2 {
     color: #ddd;
 }
 
-.navbar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-}
-
-.navbar-links a {
-    margin-left: 20px;
-    color: #fff;
-    text-decoration: none;
-}
-
-.navbar-links a:hover {
-    color: #4CAF50;
-}
-
-.navbar-brand {
-    color: #4CAF50;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* Admin */
-.admin-dashboard {
-    max-width: 800px;
-    margin: 0 auto;
+.admin-form {
+    background-color: #222;
     padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.admin-form input[type="text"],
+.admin-form input[type="file"],
+.admin-form select,
+.admin-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background-color: #333;
     color: #fff;
+}
+
+.admin-form input[type="file"] {
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #444;
+    border: 1px dashed #555;
+}
+
+.admin-form textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.admin-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.admin-form button:hover {
+    background-color: #369b36;
+}
+
+.admin-form .logout-button {
+    background-color: #f44336;
+}
+
+.admin-form .logout-button:hover {
+    background-color: #c0392b;
 }
 
 .admin-dashboard h1, .admin-dashboard h2 {
@@ -404,3 +469,99 @@ select {
     padding: 5px;
     border-radius: 5px;
 }
+
+.marketInfo-form input[type="file"] {
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#marketInfo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #0e0e10;
+    padding: 20px;
+}
+
+.market-item {
+    margin: 50px;
+    background-color: #222;
+    border-radius: 5px;
+    overflow: hidden;
+    width: calc(50% - 120px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.market-item:hover {
+    transform: scale(1.05);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #333;
+    border-radius: 50%;
+}
+
+.card-body {
+    padding: 15px;
+    background-color: #333;
+    color: #fff;
+}
+
+.marketinfo-form {
+    background-color: #333;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.marketinfo-form input[type="text"],
+.marketinfo-form input[type="file"],
+.marketinfo-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+}
+
+.marketinfo-form input[type="file"] {
+    cursor: pointer;
+}
+
+.marketinfo-form textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.marketinfo-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.marketinfo-form button:hover {
+    background-color: #369b36;
+}
+
+

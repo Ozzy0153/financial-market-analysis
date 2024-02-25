@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="<%= i18n.language %>">
+<head>
+    <meta charset="UTF-8">
+    <title><%= t('main') %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<nav class="navbar1">
+    <div class="navbar-container1">
+        <a href="/main" class="navbar-brand1"><%= t('financial_market_analysis') %></a>
+        <div class="navbar-links1">
+            <a href="/main"><%= t('main') %></a>
+            <a href="/dashboard"><%= t('dashboard') %></a>
+            <a href="/stocks"><%= t('stocks') %></a>
+        </div>
+        <select onchange="if(this.value !== '') { window.location = '/language/' + this.value; }">
+            <option value="" selected disabled hidden><%= t('select_language') %></option>
+            <option value="en"><%= t('language_english') %></option>
+            <option value="ru"><%= t('language_russian') %></option>
+            <option value="kz"><%= t('language_kazakh') %></option>
+        </select>
+    </div>
+</nav>
+<div id="marketInfo"></div>
+<input type="hidden" id="currentLanguage" value="<%= i18n.language %>" />
+
+<script src="/js/main.js"></script>
+
+</body>
+</html>

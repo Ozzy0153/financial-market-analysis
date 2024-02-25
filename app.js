@@ -6,6 +6,7 @@ const axios = require('axios');
 const User = require('./models/User');
 const authRoutes = require('./routes/auth');
 const adminRoutes = require('./routes/adminRoutes');
+const marketInfoRoutes = require('./routes/marketInfo');
 const app = express();
 const i18next = require('i18next');
 const Backend = require('i18next-fs-backend');
@@ -31,6 +32,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use('/', adminRoutes);
+app.use('/marketInfo', marketInfoRoutes);
 
 const authMiddleware = require('./middleware/authMiddleware');
 const isAdmin = require('./middleware/isAdmin');
@@ -79,7 +81,7 @@ app.get('/dashboard', authMiddleware, (req, res) => {
 app.get('/api/currency-rates', async (req, res) => {
     try {
         const response = await axios.get(`http://api.exchangeratesapi.io/v1/latest?access_key=${process.env.EXCHANGE_RATES_API_KEY}`);
-        res.json(response.data); // Send this back to the client
+        res.json(response.data);
     } catch (error) {
         console.error('Error fetching currency rates:', error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -89,6 +91,13 @@ app.get('/api/currency-rates', async (req, res) => {
 app.get('/stocks', (req, res) => {
     res.render('stocks', { stockData: {} });
 });
+
+app.get('/main', (req, res) => {
+    res.render('main', {
+        i18n: req.i18n
+    });
+});
+
 
 app.get('/admin', isAdmin, async (req, res) => {
     const users = await User.find({});

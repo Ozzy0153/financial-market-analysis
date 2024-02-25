@@ -36,7 +36,7 @@ router.post('/login', async (req, res) => {
         }
         const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET);
         res.cookie('token', token, { httpOnly: true, secure: true });
-        const redirectUrl = user.role === 'admin' ? '/admin' : '/dashboard';
+        const redirectUrl = user.role === 'admin' ? '/admin' : '/main';
         res.redirect(redirectUrl);
 
     } catch (error) {
