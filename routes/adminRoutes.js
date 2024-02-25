@@ -10,7 +10,7 @@ router.get('/admin', isAdmin, async (req, res) => {
 
 router.post('/edit-user', isAdmin, async (req, res) => {
     try {
-        const { userId, username, role } = req.body; // Assuming you want to allow the admin to change username and role
+        const { userId, username, role } = req.body;
         const user = await User.findByIdAndUpdate(userId, { username, role }, { new: true });
         if (!user) {
             return res.status(404).send('User not found.');

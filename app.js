@@ -25,10 +25,6 @@ i18next
         },
     });
 
-app.use(middleware.handle(i18next));
-
-
-
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.use(express.static('public'));
@@ -39,13 +35,12 @@ app.use('/', adminRoutes);
 const authMiddleware = require('./middleware/authMiddleware');
 const isAdmin = require('./middleware/isAdmin');
 
-
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to MongoDB Atlas'))
     .catch(err => console.error('Could not connect to MongoDB Atlas', err));
 
-// Middleware
 app.use(express.json());
+app.use(middleware.handle(i18next));
 
 app.use('/api/auth', authRoutes);
 
@@ -114,7 +109,6 @@ app.get('/api/stocks', async (req, res) => {
     res.json(data);
 });
 
-// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server listening at http://localhost:${PORT}`);
