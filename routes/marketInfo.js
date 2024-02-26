@@ -35,7 +35,6 @@ router.post('/add', [isAdmin, upload.array('images', 3)], async (req, res) => {
     }
 });
 
-
 router.get('/', async (req, res) => {
     try {
         const marketInfos = await MarketInfo.find({});
@@ -50,8 +49,8 @@ router.put('/:id', [isAdmin, upload.array('images', 3)], async (req, res) => {
     try {
         const { names, descriptions } = req.body;
         let updateData = {
-            names: JSON.parse(names),
-            descriptions: JSON.parse(descriptions),
+            names,
+            descriptions,
             updatedAt: new Date()
         };
 
@@ -62,10 +61,11 @@ router.put('/:id', [isAdmin, upload.array('images', 3)], async (req, res) => {
         await MarketInfo.findByIdAndUpdate(req.params.id, updateData);
         res.redirect('/admin');
     } catch (error) {
-        console.error(error);
+        console.error('Error updating market info:', error);
         res.status(500).send('Server error');
     }
 });
+
 
 router.delete('/:id', isAdmin, async (req, res) => {
     try {
@@ -76,5 +76,36 @@ router.delete('/:id', isAdmin, async (req, res) => {
         res.status(500).send('Server error');
     }
 });
+
+router.post('/edit/:id', [isAdmin, upload.array('images', 3)], async (req, res) => {
+    const { id } = req.params;
+    const { names, descriptions } = req.body;
+    let update = {
+        names: names,
+        descriptions: descriptions,
+    };
+    if (req.files.length > 0) {
+        update.images = req.files.map(file => `/uploads/${file.filename}`);
+    }
+    try {
+        await MarketInfo.findByIdAndUpdate(id, update);
+        res.redirect('/admin');
+    } catch (error) {
+        console.error('Error updating market info:', error);
+        res.status(500).send('Server error');
+    }
+});
+
+router.post('/delete/:id', isAdmin, async (req, res) => {
+    const { id } = req.params;
+    try {
+        await MarketInfo.findByIdAndDelete(id);
+        res.redirect('/admin');
+    } catch (error) {
+        console.error('Error deleting market info:', error);
+        res.status(500).send('Server error');
+    }
+});
+
 
 module.exports = router;

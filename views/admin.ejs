@@ -8,7 +8,22 @@
 <body>
 <div class="admin-dashboard">
     <h1>Admin Dashboard</h1>
-    <div>
+
+    <div class="admin-form">
+        <h2>Add New User</h2>
+        <form action="/add-user" method="post">
+            <input type="text" name="username" placeholder="Username" required class="admin-input">
+            <input type="password" name="password" placeholder="Password" required class="admin-input">
+            <select name="role" required class="admin-select">
+                <option value="">Select Role</option>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+            <button type="submit" class="admin-button">Add User</button>
+        </form>
+    </div>
+
+    <div class="user-management">
         <h2>All Users</h2>
         <ul class="user-list">
             <% users.forEach(user => { %>
@@ -33,18 +48,51 @@
             <% }) %>
         </ul>
     </div>
-    <div class="marketinfo-form">
-        <form action="/marketinfo/add" method="post" enctype="multipart/form-data">
-            <input type="file" name="images" multiple required>
-            <input type="text" name="names[en]" placeholder="Name in English" required>
-            <input type="text" name="names[ru]" placeholder="Name in Russian" required>
-            <input type="text" name="names[kz]" placeholder="Name in Kazakh" required>
-            <textarea name="descriptions[en]" placeholder="Description in English" required></textarea>
-            <textarea name="descriptions[ru]" placeholder="Description in Russian" required></textarea>
-            <textarea name="descriptions[kz]" placeholder="Description in Kazakh" required></textarea>
-            <button type="submit">Add Market Info</button>
-        </form>
+    <div class="market-info-list">
+        <h2>Market Information</h2>
+        <% marketInfos.forEach(info => { %>
+            <div class="market-info-item">
+                <form action="/marketInfo/edit/<%= info._id %>" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="images">Images:</label>
+                        <input type="file" name="images" multiple>
+                        <% info.images.forEach(image => { %>
+                            <img src="<%= image %>" alt="Market Image" height="100">
+                        <% }); %>
+                    </div>
+                    <div class="form-group">
+                        <label for="name-en">Name (EN):</label>
+                        <input type="text" name="names[en]" value="<%= info.names.en %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name-ru">Name (RU):</label>
+                        <input type="text" name="names[ru]" value="<%= info.names.ru %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name-kz">Name (kz):</label>
+                        <input type="text" name="names[kz]" value="<%= info.names.kz %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description-en">Description (EN):</label>
+                        <textarea name="descriptions[en]" required><%= info.descriptions.en %></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="description-ru">Description (RU):</label>
+                        <textarea name="descriptions[ru]" required><%= info.descriptions.ru %></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="description-kz">Description (KZ):</label>
+                        <textarea name="descriptions[kz]" required><%= info.descriptions.kz %></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+                <form action="/marketInfo/delete/<%= info._id %>" method="post">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        <% }); %>
     </div>
+
 
 
     <div class="logout-section">
