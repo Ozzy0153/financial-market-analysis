@@ -61,6 +61,8 @@ The admin page allows administrators to manage user accounts effectively. As an 
 - **Edit Users**: Update existing user account details, including changing their username, password, and admin status.
 - **Delete Users**: Remove user accounts from the system.
 - **Add Market Info Cards**: Create new market info card by entering the name and description in 3 languages(en, ru, kz)
+- **Edit Market Info Cards**: Update existing market info details, including changing their names, description and images.
+- **Delete Market Info Cards**: Remove market info cards from the system.
 
 ### Accessing the Admin Account
 
@@ -68,3 +70,39 @@ For demonstration purposes, an admin account is pre-configured with the followin
 
 - **Username**: Orazaly
 - **Password**: Orazaly
+
+## Project Images:
+
+### Greeting page
+![img.png](README_png/img.png)
+User can choose register or login
+### Registration
+![img.png](README_png/img_1.png)
+User enters username and password to register
+### Login
+![img.png](README_png/img_2.png)
+User enters username and password to login
+### Admin page
+![img.png](README_png/img_3.png)
+![img.png](README_png/img_4.png)
+![img.png](README_png/img_5.png)
+![img.png](README_png/img_6.png)
+![img.png](README_png/img_7.png)
+Admin can add, edit and delete the users' information
+Also, admin can add, edit and delete market information cards
+### Main page
+![img.png](README_png/img_8.png)
+![img.png](README_png/img_9.png)
+![img.png](README_png/img_10.png)
+User can see the market info cards 
+### Dashboard page
+![img.png](README_png/img_11.png)
+User can convert and check the current currency rates
+### Stocks page
+![img.png](README_png/img_12.png)
+![img.png](README_png/img_13.png)
+User can check the prices of stocks by their stock market tags
+
+
+
+

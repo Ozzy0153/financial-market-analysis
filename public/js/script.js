@@ -17,7 +17,7 @@ fetch('/api/currency-rates')
 function displayCurrencyRates(data) {
     const ratesElement = document.getElementById('currencyRates');
     if (ratesElement && data && data.rates) {
-        ratesElement.innerHTML = ''; // Clear previous content
+        ratesElement.innerHTML = '';
         Object.keys(data.rates).forEach(currency => {
             ratesElement.innerHTML += `<div>${currency}: ${data.rates[currency]}</div>`;
         });
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('currencyConversionForm');
     if (form) {
         form.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form from submitting normally
+            event.preventDefault();
             const amount = document.getElementById('amount').value;
             const currency = document.getElementById('currency').value;
             fetch('/api/currency-rates')

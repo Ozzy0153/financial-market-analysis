@@ -48,6 +48,7 @@
             <% }) %>
         </ul>
     </div>
+    <h2>Add Market Info</h2>
     <div class="marketinfo-form">
         <form action="/marketinfo/add" method="post" enctype="multipart/form-data">
             <input type="file" name="images" multiple required>
@@ -81,7 +82,7 @@
                         <input type="text" name="names[ru]" value="<%= info.names.ru %>" required>
                     </div>
                     <div class="form-group">
-                        <label for="name-kz">Name (kz):</label>
+                        <label for="name-kz">Name (KZ):</label>
                         <input type="text" name="names[kz]" value="<%= info.names.kz %>" required>
                     </div>
                     <div class="form-group">
