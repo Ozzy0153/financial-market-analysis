@@ -48,6 +48,18 @@
             <% }) %>
         </ul>
     </div>
+    <div class="marketinfo-form">
+        <form action="/marketinfo/add" method="post" enctype="multipart/form-data">
+            <input type="file" name="images" multiple required>
+            <input type="text" name="names[en]" placeholder="Name in English" required>
+            <input type="text" name="names[ru]" placeholder="Name in Russian" required>
+            <input type="text" name="names[kz]" placeholder="Name in Kazakh" required>
+            <textarea name="descriptions[en]" placeholder="Description in English" required></textarea>
+            <textarea name="descriptions[ru]" placeholder="Description in Russian" required></textarea>
+            <textarea name="descriptions[kz]" placeholder="Description in Kazakh" required></textarea>
+            <button type="submit">Add Market Info</button>
+        </form>
+    </div>
     <div class="market-info-list">
         <h2>Market Information</h2>
         <% marketInfos.forEach(info => { %>
@@ -92,8 +104,6 @@
             </div>
         <% }); %>
     </div>
-
-
 
     <div class="logout-section">
         <form action="/logout" method="POST">
